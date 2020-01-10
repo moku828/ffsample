@@ -431,7 +431,7 @@ int main (void)
 			switch (*ptr++) {
 
 			case 'i' :	/* fi - Force initialized the logical drive */
-				put_rc(f_mount(&FatFs[0], "", 0);
+				put_rc(f_mount(&FatFs[0], "", 0));
 				break;
 
 			case 's' :	/* fs [<path>] - Show volume status */

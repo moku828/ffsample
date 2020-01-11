@@ -31,7 +31,7 @@ _set_imask:
 	AND     R0, R4
 	NOT     R0, R0
 	STC     SR, R1
-	AND     R0, R4
+	AND     R0, R1
 	OR      R4, R1
 	LDC     R1, SR
 	RTS

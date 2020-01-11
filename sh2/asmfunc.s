@@ -1,6 +1,7 @@
 .global start
 .global _set_imask
 .global _RESET_Vectors
+.global _sleep
 .extern _main
 .extern _PowerON_Reset_PC
 .extern _Manual_Reset_PC
@@ -30,6 +31,11 @@ _set_imask:
 	AND     R0, R4
 	OR      R4, R1
 	LDC     R1, SR
+	RTS
+	NOP
+_sleep:
+	SLEEP
+	NOP
 	RTS
 	NOP
 

@@ -65,9 +65,9 @@ void *RESET_Vectors[] = {
 */
 
 
-#pragma section INTTBL		// 割り込みベクタテーブル (0x0C000010)
+//#pragma section INTTBL		// 割り込みベクタテーブル (0x0C000010)
 
-void *INT_Vectors[] = {
+void *INT_Vectors[] __attribute__((section(".INTTBL"))) = {
 // 4 Illegal code
 	(void*) INT_Illegal_code,
 // 5 Reserved

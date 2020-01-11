@@ -4,6 +4,7 @@
 .global _sleep
 .global _set_vbr
 .global _set_fpscr
+.global _set_cr
 .extern _main
 .extern _PowerON_Reset_PC
 .extern _Manual_Reset_PC
@@ -46,6 +47,10 @@ _set_vbr:
 	NOP
 _set_fpscr:
 	LDS     R4, FPSCR
+	RTS
+	NOP
+_set_cr:
+	LDC     R4, SR
 	RTS
 	NOP
 

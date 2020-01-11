@@ -64,7 +64,7 @@ void scif3_init (unsigned long bps)
 	SCIF3.SCEMR.WORD = 0x0000;						/* Bit rate */
 	SCIF3.SCBRR.BYTE = F_PCLK / 1 / bps / 32 - 1;
 	SCIF3.SCSMR.WORD = 0x0000;						/* Data format (N81) */
-	SCIF3.SCFCR.WORD = 0x00B4; SCIF3.SCFCR.WORD = 0x00B0;	/* Clear Tx FIFO */
+	SCIF3.SCFCR.WORD = 0x0034; SCIF3.SCFCR.WORD = 0x0030;	/* Clear Tx FIFO */
 
 	/* Clear Tx Buffer */
 	TxFifo.ri = 0; TxFifo.wi = 0; TxFifo.ct = 0;

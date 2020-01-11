@@ -70,6 +70,8 @@ void main(void);
 
 //#pragma section ResetPRG
 
+extern const void * _bss_start__;
+extern const void * _bss_end__;
 #pragma entry PowerON_Reset_PC
 void PowerON_Reset_PC(void)
 {
@@ -82,7 +84,7 @@ void PowerON_Reset_PC(void)
 
 //	_INITSCT();						// Rセクションの初期化(D→R)とBセクションのクリア (RAM上ロードのため未使用)
 
-//	for (p = (char*)__sectop("B"); p < (char*)__secend("B"); p++) *p = 0;	// Bセクションのクリア
+	for (p = (char*)&_bss_start__; p < (char*)&_bss_end__; p++) *p = 0;	// Bセクションのクリア
 
 
 //	_CALL_INIT();					// Remove the comment when you use global class object

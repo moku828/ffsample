@@ -7,7 +7,6 @@
 /*----------------------------------------------------------------------*/
 
 
-#include <machine.h>
 #include <string.h>
 #include "iodefine.h"
 #include "vect.h"

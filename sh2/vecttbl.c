@@ -544,7 +544,7 @@ void *INT_Vectors[] = {
 // 242 SCIF SCIF2 RXI2
 	(void*) INT_SCIF_SCIF2_RXI2,	// scif.c
 // 243 SCIF SCIF2 TXI2
-	(void*) INT_SCIF_SCIF2_TXI2,	// scif.c
+	(void*) Dummy,//INT_SCIF_SCIF2_TXI2,
 // 244 SCIF SCIF3 BRI3
 	(void*) Dummy,//INT_SCIF_SCIF3_BRI3,
 // 245 SCIF SCIF3 ERI3
@@ -552,7 +552,7 @@ void *INT_Vectors[] = {
 // 246 SCIF SCIF3 RXI3
 	(void*) Dummy,//INT_SCIF_SCIF3_RXI3,
 // 247 SCIF SCIF3 TXI3
-	(void*) Dummy,//INT_SCIF_SCIF3_TXI3,
+	(void*) INT_SCIF_SCIF3_TXI3,	// scif.c
 // 248 SCIF SCIF4 BRI4
 	(void*) Dummy,//INT_SCIF_SCIF4_BRI4,
 // 249 SCIF SCIF4 ERI4

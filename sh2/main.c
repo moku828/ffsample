@@ -100,6 +100,7 @@ void IoInit (void)
 	CPG.STBCR8.BYTE = 0;
 
 	scif2_init(38400);				/* Initialize SCI2: N81,38400bps */
+	scif3_init(38400);				/* Initialize SCI3: N81,38400bps */
 
 	/* Initialize CMT0 (1kHz interval timer) */
 	CMT.CMCNT0.WORD = 0;			/* Clear counter */
@@ -256,7 +257,7 @@ int main (void)
 	IoInit();
 
 	xdev_in(scif2_getc);		/* Join scif.c and monitor.c */
-	xdev_out(scif2_putc);
+	xdev_out(scif3_putc);
 
 	delay_ms(10);
 	xputs("\nFatFs module test monitor for FRK-RN62N evaluation board\n");

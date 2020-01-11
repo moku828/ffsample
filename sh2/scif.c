@@ -141,6 +141,7 @@ void scif3_putc (unsigned char d)
 /* ISR for data receive event            */
 /*---------------------------------------*/
 
+void INT_SCIF_SCIF2_RXI2 (void) __attribute__((interrupt_handler));
 void INT_SCIF_SCIF2_RXI2 (void)	/* ISR: requires vect.h */
 {
 	int i, cnt;
@@ -170,6 +171,7 @@ void INT_SCIF_SCIF2_RXI2 (void)	/* ISR: requires vect.h */
 /* ISR for data transimit event          */
 /*---------------------------------------*/
 
+void INT_SCIF_SCIF3_TXI3 (void) __attribute__((interrupt_handler));
 void INT_SCIF_SCIF3_TXI3 (void)	/* ISR: requires vect.h */
 {
 	int i, cnt;

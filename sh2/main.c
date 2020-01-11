@@ -44,6 +44,7 @@ volatile UINT Timer;		/* Performance timer (1kHz) */
 /* 1000Hz interval timer (CMT0)                            */
 /*---------------------------------------------------------*/
 
+void INT_CMT_CMI0 (void) __attribute__((interrupt_handler));
 void INT_CMT_CMI0 (void)	/* ISR: Requires vect.h */
 {
 	static int div10, b;

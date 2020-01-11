@@ -30,12 +30,14 @@
 
 
 // 4 Illegal code handler
+void INT_Illegal_code(void) __attribute__((interrupt_handler));
 void INT_Illegal_code(void)
 {
 	sleep();
 }
 
 // Unwanted interrupt handler
+void Dummy(void) __attribute__((interrupt_handler));
 void Dummy(void)
 {
 	sleep();

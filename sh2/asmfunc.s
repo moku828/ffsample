@@ -2,6 +2,7 @@
 .global _set_imask
 .global _RESET_Vectors
 .global _sleep
+.global _set_vbr
 .extern _main
 .extern _PowerON_Reset_PC
 .extern _Manual_Reset_PC
@@ -36,6 +37,10 @@ _set_imask:
 _sleep:
 	SLEEP
 	NOP
+	RTS
+	NOP
+_set_vbr:
+	LDC     R4, VBR
 	RTS
 	NOP
 

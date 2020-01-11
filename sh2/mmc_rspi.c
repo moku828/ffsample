@@ -18,11 +18,11 @@
 
 /* MMC control port and function controls  (Platform dependent) */
 
-#define CS_LOW()	PORT.PGDR1.BIT.PG20DR = 0	/* MMC CS = L */
-#define	CS_HIGH()	PORT.PGDR1.BIT.PG20DR = 1	/* MMC CS = H */
-#define SOCKPORT	PORT.PJPR0.WORD		/* Socket contact input port (PJ) */
-#define SOCKWP		0x0008				/* Write protect bit (PJ3) */
-#define SOCKINS		0x0002				/* Card detect bit (PJ1) */
+#define CS_LOW()	PORT.PCDR0.BIT.PC7DR = 0	/* MMC CS = L */
+#define	CS_HIGH()	PORT.PCDR0.BIT.PC7DR = 1	/* MMC CS = H */
+#define SOCKPORT	PORT.PCPR0.WORD		/* Socket contact input port (PC) */
+#define SOCKWP		0x0020				/* Write protect bit (PC5) */
+#define SOCKINS		0x0040				/* Card detect bit (PC6) */
 
 #define BCLK		48000000UL			/* Clock frequency supplied to SPI module */
 #define CLK_FAST	12000000UL			/* Fast SCLK (working) */

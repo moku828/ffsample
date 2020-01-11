@@ -32,7 +32,7 @@ extern void *INT_Vectors[];
 #ifdef __cplusplus
 extern "C" {
 #endif
-void PowerON_Reset_PC(void);
+void PowerON_Reset_PC(void) __attribute__((section(".ResetPRG")));
 void Manual_Reset_PC(void);
 void main(void);
 #ifdef __cplusplus
@@ -68,7 +68,7 @@ void main(void);
 //}
 //#endif
 
-#pragma section ResetPRG
+//#pragma section ResetPRG
 
 #pragma entry PowerON_Reset_PC
 void PowerON_Reset_PC(void)

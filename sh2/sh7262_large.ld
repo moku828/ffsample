@@ -16,6 +16,7 @@ SECTIONS
   {
 	*(.VECTTBL)
 	*(.INTTBL)
+	*(.ResetPRG)
 	*(.text .text.*)	/* Program code */
 	*(.rodata)		/* Read-only data (constants) */
 	*(.rodata*)

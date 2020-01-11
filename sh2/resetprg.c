@@ -11,9 +11,9 @@
 
 
 
-#include	<machine.h>
+//#include	<machine.h>
 #include	"iodefine.h"
-#include	<_h_c_lib.h>
+//#include	<_h_c_lib.h>
 //#include	<stddef.h>					// Remove the comment when you use errno
 //#include 	<stdlib.h>					// Remove the comment when you use rand()
 #include	"typedefine.h"

@@ -25,7 +25,7 @@
 *               And Renesas Solutions Corp.,All Rights Reserved. 
 *
 *********************************************************************/
-#include <machine.h>
+//#include <machine.h>
 #include "vect.h"
 
 

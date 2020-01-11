@@ -3,6 +3,7 @@
 .global _RESET_Vectors
 .global _sleep
 .global _set_vbr
+.global _set_fpscr
 .extern _main
 .extern _PowerON_Reset_PC
 .extern _Manual_Reset_PC
@@ -41,6 +42,10 @@ _sleep:
 	NOP
 _set_vbr:
 	LDC     R4, VBR
+	RTS
+	NOP
+_set_fpscr:
+	LDS     R4, FPSCR
 	RTS
 	NOP
 

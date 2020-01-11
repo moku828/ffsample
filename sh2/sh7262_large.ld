@@ -31,7 +31,7 @@ SECTIONS
 	*(.zdata)
 	. = ALIGN(4);
 	__data_end__ = . ;
-  } > FRAM
+  } > LRAM0
 
 
   /* .bss section which is to be initialized by 0 */
@@ -44,7 +44,7 @@ SECTIONS
 	*(.got.*)
 	. = ALIGN(4);
 	__bss_end__ = . ;
-  } > FRAM
+  } > LRAM0
 
 
   .stack (NOLOAD) :

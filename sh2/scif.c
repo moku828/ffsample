@@ -100,14 +100,14 @@ unsigned char scif2_getc (void)
 	/* Wait while Rx buffer is empty */
 	while (!RxFifo.ct) ;
 
-	SCIF2.SCSCR.BIT.RIE = 0;		/* Disable Rx interrupt */
+	SCIF2.SCSCR.WORD &= ~0x0040;		/* Disable Rx interrupt */
 
 	i = RxFifo.ri;
 	d = RxFifo.buff[i++];			/* Get a byte from Rx buffer */
 	RxFifo.ri = i % BUFFER_SIZE;
 	RxFifo.ct--;
 
-	SCIF2.SCSCR.BIT.RIE = 1;		/* Enable Rx interrupt */
+	SCIF2.SCSCR.WORD |= 0x0040;		/* Enable Rx interrupt */
 
 	return d;
 }
@@ -125,14 +125,14 @@ void scif3_putc (unsigned char d)
 
 	while (TxFifo.ct >= BUFFER_SIZE) ;	/* Wait for buffer ready */
 
-	SCIF3.SCSCR.BIT.TIE = 0;		/* Disable Tx interrupt */
+	SCIF3.SCSCR.WORD &= ~0x0080;			/* Disable Tx interrupt */
 
 	i = TxFifo.wi;					/* Store the data into the Tx buffer */
 	TxFifo.buff[i++] = d;
 	TxFifo.wi = i % BUFFER_SIZE;
 	TxFifo.ct++;
 
-	SCIF3.SCSCR.BIT.TIE = 1;		/* Enable Tx interrupt */
+	SCIF3.SCSCR.WORD |= 0x0080;			/* Enable Tx interrupt */
 }
 
 
@@ -157,7 +157,7 @@ void INT_SCIF_SCIF2_RXI2 (void)	/* ISR: requires vect.h */
 			i %= BUFFER_SIZE;
 			cnt++;
 		}
-	} while (SCIF2.SCFDR.BIT.R);
+	} while (SCIF2.SCFDR.WORD & 0x001F);
 
 	SCIF2.SCFSR.WORD &= ~0x0083;	/* Clear interrupt flags */
 
@@ -184,13 +184,13 @@ void INT_SCIF_SCIF3_TXI3 (void)	/* ISR: requires vect.h */
 			SCIF3.SCFTDR.BYTE = TxFifo.buff[i++];
 			i %= BUFFER_SIZE;
 			cnt--;
-		} while (cnt && SCIF3.SCFDR.BIT.T < 16);
+		} while (cnt && ((SCIF3.SCFDR.WORD >> 8) & 0x001F) < 16);
 		TxFifo.ri = i;
 		TxFifo.ct = cnt;
-		SCIF3.SCFSR.BIT.TDFE = 0;		/* Clear Tx interrupt flag */
+		SCIF3.SCFSR.WORD &= ~0x0020;		/* Clear Tx interrupt flag */
 	}
 	if (!cnt)	/* Disable Tx interrupt if no data in the buffer */
-		SCIF3.SCSCR.BIT.TIE = 0;
+		SCIF3.SCSCR.WORD &= ~0x0080;
 }
 
 

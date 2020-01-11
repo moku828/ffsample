@@ -1,6 +1,9 @@
 .global start
 .global _set_imask
+.global _RESET_Vectors
 .extern _main
+.extern _PowerON_Reset_PC
+.extern _Manual_Reset_PC
 
 .section .stack, "w"
 	.align  4
@@ -42,3 +45,10 @@ __imask:
 
 .section .text, "ax"
 
+.section .VECTTBL, "a"
+	.align  4
+_RESET_Vectors:
+	.long   _PowerON_Reset_PC
+	.long   stack_base
+	.long   _Manual_Reset_PC
+	.long   stack_base

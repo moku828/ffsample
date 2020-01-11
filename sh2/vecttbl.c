@@ -43,6 +43,8 @@ void Dummy(void)
 
 
 
+extern void *RESET_Vectors[];
+/*
 #pragma section VECTTBL		// リセットベクタテーブル (0x1C000000)
 
 void *RESET_Vectors[] = {
@@ -60,6 +62,7 @@ void *RESET_Vectors[] = {
     __secend("S")
 
 };
+*/
 
 
 #pragma section INTTBL		// 割り込みベクタテーブル (0x0C000010)

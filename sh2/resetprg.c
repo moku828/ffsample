@@ -82,7 +82,7 @@ void PowerON_Reset_PC(void)
 
 //	_INITSCT();						// Rセクションの初期化(D→R)とBセクションのクリア (RAM上ロードのため未使用)
 
-	for (p = (char*)__sectop("B"); p < (char*)__secend("B"); p++) *p = 0;	// Bセクションのクリア
+//	for (p = (char*)__sectop("B"); p < (char*)__secend("B"); p++) *p = 0;	// Bセクションのクリア
 
 
 //	_CALL_INIT();					// Remove the comment when you use global class object

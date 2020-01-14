@@ -195,10 +195,10 @@ void init_spi (void)	/* Initialize SPI */
 	/* Attach SPI0 module to I/O pads */
 	PORT.PFCR3.WORD = 0x0003;								/* MISO0 */
 	PORT.PFCR2.WORD = (PORT.PFCR2.WORD & 0x0F0F) | 0x3030;	/* RSPCK0, MOSI0 */
-	PORT.PGIOR1.WORD |= 0x0010; PORT.PGCR5.WORD &= 0xFFF0;	/* MMC_CS */
+	PORT.PCIOR0.WORD |= 0x0080; PORT.PCCR1.WORD &= 0x0FFF;	/* MMC_CS */
 	CS_HIGH();
-	if (_USE_CD) {PORT.PJIOR0.WORD &= 0xFFFD; PORT.PJCR0.WORD &= 0xFF0F;}	/* MMC_CD */
-	if (_USE_WP) {PORT.PJIOR0.WORD &= 0xFFF7; PORT.PJCR0.WORD &= 0x0FFF;}	/* MMC_WP */
+	if (_USE_CD) {PORT.PCIOR0.WORD &= 0xFFFB; PORT.PCCR1.WORD &= 0xF0FF;}	/* MMC_CD */
+	if (_USE_WP) {PORT.PCIOR0.WORD &= 0xFFFD; PORT.PCCR1.WORD &= 0xFF0F;}	/* MMC_WP */
 
 	/* Enable SPI0 module */
 	RSPI0.SPPCR.BYTE = 0;			/* Fixed idle value, disable loop-back mode */

@@ -50,7 +50,7 @@ void INT_CMT_CMI0 (void)	/* ISR: Requires vect.h */
 	static int div10, b;
 
 
-	CMT.CMCSR0.BIT.CMF = 0;		/* Clear CMT0 interrupt flag */
+	CMT.CMCSR0.WORD &= ~0x0080;	/* Clear CMT0 interrupt flag */
 
 	Timer++;
 
@@ -107,8 +107,8 @@ void IoInit (void)
 	CMT.CMCNT0.WORD = 0;			/* Clear counter */
 	CMT.CMCOR0.WORD = F_PCLK / 8 / 1000 - 1;	/* Set clock divider */
 	CMT.CMCSR0.WORD = 0x0040;		/* Enable interrupt, Clock source = PCLK/8 */
-	CMT.CMSTR.BIT.STR0 = 1;			/* Start CMT0 */
-	INTC.IPR10.BIT._CMT0 = 2;		/* Set interrupt level 2 */
+	CMT.CMSTR.WORD |= 0x0001;		/* Start CMT0 */
+	INTC.IPR10.WORD = (INTC.IPR10.WORD & ~0x00F0) | 0x0020;		/* Set interrupt level 2 */
 
 
 	INTC.IBNR.WORD = 0;				/* Disable register bank feature */

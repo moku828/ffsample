@@ -1,11 +1,9 @@
-.global start
 .global _set_imask
 .global _RESET_Vectors
 .global _sleep
 .global _set_vbr
 .global _set_fpscr
 .global _set_cr
-.extern _main
 .extern _PowerON_Reset_PC
 .extern _Manual_Reset_PC
 
@@ -16,14 +14,6 @@ stack_base:
 
 .section .text, "ax"
 
-start:
-	MOV.L   _stack_base, SP
-	MOV.L   __main, R0
-	JSR     @R0
-	NOP
-loop:
-	BRA     loop
-	NOP
 _set_imask:
 	MOV.L   __imask, R0
 	SHLL2   R4

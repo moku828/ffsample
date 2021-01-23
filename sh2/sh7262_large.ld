@@ -1,6 +1,6 @@
 OUTPUT_FORMAT("elf32-sh");
 OUTPUT_ARCH(sh2a);
-ENTRY("start");
+ENTRY("_PowerON_Reset_PC");
 /* SH72620 Available Memory */
 MEMORY
 {

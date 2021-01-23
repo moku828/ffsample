@@ -14,6 +14,8 @@
 #include "xprintf.h"
 #include "ff.h"
 #include "diskio.h"
+#include <ft2build.h>
+#include FT_FREETYPE_H
 
 #define	F_PCLK	24000000UL
 
@@ -253,6 +255,12 @@ int main (void)
 	DWORD ofs = 0, sect = 0;
 	FATFS *fs;
 	static const BYTE ft[] = {0,12,16,32};
+	FT_Error error;
+	FT_Library library;
+	FT_Face face;
+	int size = 24;
+	FT_ULong charcode = 0x5922/*0x30CE*/;
+	FT_UInt glyph_index;
 
 
 	IoInit();
@@ -264,6 +272,20 @@ int main (void)
 	xputs("\nFatFs module test monitor for FRK-RN62N evaluation board\n");
 	xprintf("LFN=%s, CP=%u\n", FF_USE_LFN ? "Enabled" : "Disabled", FF_CODE_PAGE);
 
+	if (disk_initialize(0) & STA_NOINIT) {
+		while (1);
+	}
+
+	f_mount(&FatFs[0], "", 0);
+	error = FT_Init_FreeType(&library);
+	error = FT_New_Face(library, "/ipag.ttf", 0, &face);
+	error = FT_Set_Char_Size(face, 0, size * 64, 300, 300);
+	error = FT_Set_Pixel_Sizes(face, 0, size);
+	glyph_index = FT_Get_Char_Index(face, charcode);
+	error = FT_Load_Glyph(face, glyph_index, FT_LOAD_DEFAULT);
+	error = FT_Render_Glyph(face->glyph, FT_RENDER_MODE_NORMAL);
+	error = FT_Done_Face(face);
+	error = FT_Done_FreeType(library);
 	for (;;) {
 		xputc('>');
 		xgets(Line, sizeof Line);

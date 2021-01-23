@@ -5,6 +5,7 @@ ENTRY("_PowerON_Reset_PC");
 MEMORY
 {
   LRAM0 (wx) : ORIGIN = 0x1C000000, LENGTH = 160k	/* Large RAM - page 0: 160k */
+  LRAM45 (wx) : ORIGIN = 0x1C078000, LENGTH = 544k	/* Large RAM - page 4: 240k + page 5: 304k */
   FRAM (wx) : ORIGIN = 0xFFF80000, LENGTH = 64k		/* Fast SRAM: 64k */
 }
 
@@ -47,7 +48,7 @@ SECTIONS
 	*(.got.*)
 	. = ALIGN(4);
 	__bss_end__ = . ;
-  } > LRAM0
+  } > LRAM45
 
 
   .stack (NOLOAD) :
